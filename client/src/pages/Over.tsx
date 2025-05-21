@@ -2,11 +2,18 @@ import Password from "../components/Password";
 import styles from "../styles/Homepage.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { randomPassword } from "../utils/randomPassword";
 
-export const Homepage = () => {
+export const Over = () => {
   const [inputValue, setInputValue] = useState("");
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    setIsPasswordCorrect(false);
+    setPassword(randomPassword());
+  }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -14,7 +21,7 @@ export const Homepage = () => {
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "password") {
+      if (inputValue === password) {
         setIsPasswordCorrect(true);
       } else {
         alert("Incorrect password");
@@ -24,7 +31,7 @@ export const Homepage = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      navigate("/Over");
+      navigate("/");
     }
   }, [isPasswordCorrect]);
 
@@ -35,7 +42,7 @@ export const Homepage = () => {
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          src="src/assets/images/password.png"
+          src="src/assets/images/hover.jpg"
         />
       </div>
     </>
