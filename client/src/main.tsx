@@ -17,6 +17,9 @@ import { CSS } from "./pages/CSS.tsx";
 import { Icon } from "./pages/Icon.tsx";
 import { KeyboardIsBroken } from "./pages/KeyboardIsBroken.tsx";
 import { Bug } from "./pages/Bug.tsx";
+import { BeautyInside } from "./pages/BeautyInside.tsx";
+import { StockageInterne } from "./pages/StockageInterne.tsx";
+import { LastChapter } from "./pages/LastChapter.tsx";
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -78,6 +81,18 @@ const router = createBrowserRouter([
       {
         path: "/Bug",
         element: <Bug />,
+      },
+      {
+        path: "/BeautyInside",
+        element: <BeautyInside />,
+      },
+      {
+        path: "/StockageInterne",
+        element: <StockageInterne />,
+      },
+      {
+        path: "/SomethingMustBeAddedHere",
+        element: <LastChapter />,
       },
     ],
   },
