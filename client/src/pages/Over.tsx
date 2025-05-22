@@ -45,7 +45,7 @@ export const Over = () => {
       setTimeout(() => {
         setSlideAnimation(true)
         navigate("/ThePasswordIsRickRollIPromessItsNotARickRoll");
-      }, 200);
+      }, 400);
     }
   }, [isPasswordCorrect]);
 

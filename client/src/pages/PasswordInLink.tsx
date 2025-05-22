@@ -29,7 +29,7 @@ export const PasswordInLink = () => {
       setTimeout(() => {
         setSlideAnimation(true)
         navigate("/Leon");
-      }, 200);
+      }, 400);
     }
   }, [isPasswordCorrect]);
 

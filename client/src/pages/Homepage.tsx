@@ -29,7 +29,7 @@ export const Homepage = () => {
       setTimeout(() => {
         setSlideAnimation(true)
         navigate("/Over");
-      }, 200);
+      }, 400);
     }
   }, [isPasswordCorrect]);
 

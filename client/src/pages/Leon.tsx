@@ -37,7 +37,7 @@ export const Leon = () => {
       setTimeout(() => {
         setSlideAnimation(true)
         navigate("/ReplaceThis");
-      }, 200);
+      }, 400);
     }
   }, [isPasswordCorrect]);
 
