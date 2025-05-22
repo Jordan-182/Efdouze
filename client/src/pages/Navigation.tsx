@@ -29,7 +29,7 @@ export const Navigation = () => {
       setTimeout(() => {
         setSlideAnimation(true)
         navigate("/");
-      }, 200);
+      }, 400);
     }
   }, [isPasswordCorrect]);
 
