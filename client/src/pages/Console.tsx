@@ -7,12 +7,13 @@ export const Console = () => {
   const [inputValue, setInputValue] = useState("");
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
+  const [slideAnimation, setSlideAnimation] = useState(true);
 
   useEffect(() => {
     setIsPasswordCorrect(false);
   }, []);
 
-  const password = "PCMasterRace";
+  const password = "PCFTW";
   console.log(password);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +23,8 @@ export const Console = () => {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "PCMasterRace") {
+      if (inputValue === "PCFTW") {
+        setSlideAnimation(false);
         setIsPasswordCorrect(true);
       } else {
         alert("Incorrect password");
@@ -32,7 +34,10 @@ export const Console = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      navigate("/Comique");
+      setTimeout(() => {
+        setSlideAnimation(true);
+        navigate("/Comique");
+      }, 200);
     }
   }, [isPasswordCorrect]);
 
@@ -44,6 +49,7 @@ export const Console = () => {
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           src="src/assets/images/consoles.jpg"
+          slideAnimation={slideAnimation}
         />
       </div>
     </>
