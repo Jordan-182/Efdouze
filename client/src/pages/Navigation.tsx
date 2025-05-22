@@ -3,7 +3,7 @@ import styles from "../styles/Homepage.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-export const PasswordInLink = () => {
+export const Navigation = () => {
   const [inputValue, setInputValue] = useState("");
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export const PasswordInLink = () => {
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "RickRoll") {
+      if (inputValue === "Haddock") {
         setIsPasswordCorrect(true);
       } else {
         alert("Incorrect password");
@@ -24,7 +24,7 @@ export const PasswordInLink = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      navigate("/Leon");
+      navigate("/");
     }
   }, [isPasswordCorrect]);
 
@@ -35,7 +35,7 @@ export const PasswordInLink = () => {
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          src="src/assets/images/link.jpg"
+          src="src/assets/images/navigation.jpg"
         />
       </div>
     </>

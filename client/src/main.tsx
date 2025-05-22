@@ -5,6 +5,9 @@ import App from "./App.tsx";
 import { Homepage } from "./pages/Homepage.tsx";
 import { Over } from "./pages/Over.tsx";
 import { PasswordInLink } from "./pages/PasswordInLink.tsx";
+import { Leon } from "./pages/Leon.tsx";
+import { Navigation } from "./pages/Navigation.tsx";
+import { PasswordForNavigation } from "./pages/PasswordForNavigation.tsx";
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -22,6 +25,18 @@ const router = createBrowserRouter([
       {
         path: "/ThePasswordIsRickRollIPromessItsNotARickRoll",
         element: <PasswordInLink />,
+      },
+      {
+        path: "/Leon",
+        element: <Leon />,
+      },
+      {
+        path: "/ReplaceThis",
+        element: <Navigation />,
+      },
+      {
+        path: "/Password",
+        element: <PasswordForNavigation />,
       },
     ],
   },
