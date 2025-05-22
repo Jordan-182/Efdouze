@@ -9,6 +9,7 @@ import { Leon } from "./pages/Leon.tsx";
 import { Navigation } from "./pages/Navigation.tsx";
 import { PasswordForNavigation } from "./pages/PasswordForNavigation.tsx";
 import { Console } from "./pages/Console.tsx";
+import { Comique } from "./pages/Comique.tsx";
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/Log",
         element: <Console />,
+      },
+      {
+        path: "/Comique",
+        element: <Comique />,
       },
     ],
   },
