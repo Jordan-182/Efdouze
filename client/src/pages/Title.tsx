@@ -1,12 +1,14 @@
-import Password from "../components/Password";
-import styles from "../styles/Homepage.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Password from "../components/Password";
+import { useCount } from "../context/CountContext";
+import styles from "../styles/Homepage.module.css";
 
-export const Icon = () => {
+export const Title = () => {
     const [inputValue, setInputValue] = useState("");
     const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
     const navigate = useNavigate();
+    const { count, setCount } = useCount();
     const [slideAnimation, setSlideAnimation] = useState(true);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,9 +17,9 @@ export const Icon = () => {
     };
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
-            if (inputValue === "samus") {
-                setSlideAnimation(false)
-                setIsPasswordCorrect(true)
+            if (inputValue === "password") {
+                setSlideAnimation(false);
+                setIsPasswordCorrect(true);
             } else {
                 alert("Incorrect password");
             }
@@ -26,21 +28,24 @@ export const Icon = () => {
 
     useEffect(() => {
         if (isPasswordCorrect) {
+            setCount((prev) => prev + 1);
+            localStorage.setItem("count", (count + 1).toString());
             setTimeout(() => {
-                setSlideAnimation(true)
-                navigate("/CSS");
+                setSlideAnimation(true);
+                navigate("/Over");
             }, 400);
         }
     }, [isPasswordCorrect]);
 
     return (
         <>
+            <h2 className={styles.pageTitle} id="Password here"></h2>
             <div className={styles.container}>
                 <Password
                     value={inputValue}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
-                    src="/onglet.png"
+                    src="src/assets/images/password.png"
                     slideAnimation={slideAnimation}
                 />
             </div>

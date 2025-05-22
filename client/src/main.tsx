@@ -15,6 +15,7 @@ import { Comique } from "./pages/Comique.tsx";
 import { Icon } from "./pages/Icon.tsx"
 import { Bug } from "./pages/Bug.tsx";
 import "./styles/index.css";
+import { Title } from "./pages/Title.tsx";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/Bug",
         element: <Bug/>,
+      },
+      {
+        path: "/Title",
+        element: <Title/>
       },
     ],
   },
