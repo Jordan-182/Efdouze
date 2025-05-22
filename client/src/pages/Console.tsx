@@ -1,13 +1,15 @@
-import Password from "../components/Password";
-import styles from "../styles/Leon.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Password from "../components/Password";
+import { useCount } from "../context/CountContext";
+import styles from "../styles/Leon.module.css";
 
 export const Console = () => {
   const [inputValue, setInputValue] = useState("");
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
   const [slideAnimation, setSlideAnimation] = useState(true);
+  const { setCount } = useCount();
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -34,10 +36,11 @@ export const Console = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
+      setCount((prev) => prev + 1);
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/Comique");
-      }, 200);
+      }, 400);
     }
   }, [isPasswordCorrect]);
 

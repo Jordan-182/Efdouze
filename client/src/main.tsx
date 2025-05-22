@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "./App.tsx";
+import { CountProvider } from "./context/CountContext.tsx";
 import { Homepage } from "./pages/Homepage.tsx";
 import { Over } from "./pages/Over.tsx";
 import { PasswordInLink } from "./pages/PasswordInLink.tsx";
@@ -54,6 +55,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <CountProvider>
+      <RouterProvider router={router} />
+    </CountProvider>
   </StrictMode>
 );
