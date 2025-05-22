@@ -11,7 +11,7 @@ export const Leon = () => {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [slideAnimation, setSlideAnimation] = useState(true);
-  const { setCount } = useCount();
+  const { count, setCount } = useCount();
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -37,6 +37,7 @@ export const Leon = () => {
   useEffect(() => {
     if (isPasswordCorrect) {
       setCount((prev) => prev + 1);
+      localStorage.setItem("count", (count + 1).toString());
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/ReplaceThis");

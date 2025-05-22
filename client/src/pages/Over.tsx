@@ -12,7 +12,7 @@ export const Over = () => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
-  const { setCount } = useCount();
+  const { count, setCount } = useCount();
   const [password, setPassword] = useState("");
   const [slideAnimation, setSlideAnimation] = useState(true);
 
@@ -45,6 +45,7 @@ export const Over = () => {
   useEffect(() => {
     if (isPasswordCorrect) {
       setCount((prev) => prev + 1);
+      localStorage.setItem("count", (count + 1).toString());
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/ThePasswordIsRickRollIPromessItsNotARickRoll");

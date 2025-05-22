@@ -9,7 +9,7 @@ export const Navigation = () => {
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
   const [slideAnimation, setSlideAnimation] = useState(true);
-  const { setCount } = useCount();
+  const { count, setCount } = useCount();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -29,6 +29,7 @@ export const Navigation = () => {
   useEffect(() => {
     if (isPasswordCorrect) {
       setCount((prev) => prev + 1);
+      localStorage.setItem("count", (count + 1).toString());
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/Log");

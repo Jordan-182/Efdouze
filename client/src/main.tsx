@@ -10,9 +10,11 @@ import { Leon } from "./pages/Leon.tsx";
 import { Navigation } from "./pages/Navigation.tsx";
 import { PasswordForNavigation } from "./pages/PasswordForNavigation.tsx";
 import { Console } from "./pages/Console.tsx";
+import { Cookie } from "./pages/Cookie.tsx"
 import { Comique } from "./pages/Comique.tsx";
 import { Musique } from "./pages/Musique.tsx";
 import { CSS } from "./pages/CSS.tsx";
+import { Icon } from "./pages/Icon.tsx"
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
         element: <Console />,
       },
       {
+        path: "/Clicker",
+        element: <Cookie/>,
+      },
+      {
         path: "/Comique",
         element: <Comique />,
       },
@@ -58,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/CSS",
         element: <CSS />,
+      }
+      {
+        path: "/Icon",
+        element: <Icon/>,
       },
     ],
   },
