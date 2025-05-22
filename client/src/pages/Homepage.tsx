@@ -29,11 +29,10 @@ export const Homepage = () => {
   useEffect(() => {
     if (isPasswordCorrect) {
       setCount((prev) => prev + 1);
-      navigate("/Over");
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/Over");
-      }, 200);
+      }, 400);
     }
   }, [isPasswordCorrect]);
 

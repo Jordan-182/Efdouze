@@ -1,13 +1,15 @@
-import Password from "../components/Password";
-import styles from "../styles/Homepage.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Password from "../components/Password";
+import { useCount } from "../context/CountContext";
+import styles from "../styles/Homepage.module.css";
 
 export const PasswordInLink = () => {
   const [inputValue, setInputValue] = useState("");
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
   const [slideAnimation, setSlideAnimation] = useState(true);
+  const { setCount } = useCount();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -16,8 +18,8 @@ export const PasswordInLink = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === "RickRoll") {
-        setSlideAnimation(false)
-        setIsPasswordCorrect(true)
+        setSlideAnimation(false);
+        setIsPasswordCorrect(true);
       } else {
         alert("Incorrect password");
       }
@@ -26,10 +28,11 @@ export const PasswordInLink = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
+      setCount((prev) => prev + 1);
       setTimeout(() => {
-        setSlideAnimation(true)
+        setSlideAnimation(true);
         navigate("/Leon");
-      }, 200);
+      }, 400);
     }
   }, [isPasswordCorrect]);
 

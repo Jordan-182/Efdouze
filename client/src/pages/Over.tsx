@@ -45,11 +45,10 @@ export const Over = () => {
   useEffect(() => {
     if (isPasswordCorrect) {
       setCount((prev) => prev + 1);
-      navigate("/ThePasswordIsRickRollIPromessItsNotARickRoll");
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/ThePasswordIsRickRollIPromessItsNotARickRoll");
-      }, 200);
+      }, 400);
     }
   }, [isPasswordCorrect]);
 

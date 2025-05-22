@@ -1,7 +1,8 @@
-import Password from "../components/Password";
-import styles from "../styles/Leon.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Password from "../components/Password";
+import { useCount } from "../context/CountContext";
+import styles from "../styles/Leon.module.css";
 import { randomPassword } from "../utils/randomPassword";
 
 export const Leon = () => {
@@ -10,6 +11,7 @@ export const Leon = () => {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [slideAnimation, setSlideAnimation] = useState(true);
+  const { setCount } = useCount();
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -24,8 +26,8 @@ export const Leon = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === password) {
-        setSlideAnimation(false)
-        setIsPasswordCorrect(true)
+        setSlideAnimation(false);
+        setIsPasswordCorrect(true);
       } else {
         alert("Incorrect password");
       }
@@ -34,10 +36,11 @@ export const Leon = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
+      setCount((prev) => prev + 1);
       setTimeout(() => {
-        setSlideAnimation(true)
+        setSlideAnimation(true);
         navigate("/ReplaceThis");
-      }, 200);
+      }, 400);
     }
   }, [isPasswordCorrect]);
 
