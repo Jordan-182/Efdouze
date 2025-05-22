@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "./App.tsx";
 import { Homepage } from "./pages/Homepage.tsx";
 import { Over } from "./pages/Over.tsx";
+import { PasswordInLink } from "./pages/PasswordInLink.tsx";
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/Over",
         element: <Over />,
+      },
+      {
+        path: "/ThePasswordIsRickRollIPromessItsNotARickRoll",
+        element: <PasswordInLink />,
       },
     ],
   },
