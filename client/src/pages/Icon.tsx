@@ -33,17 +33,17 @@ export const Icon = () => {
     }
   }, [isPasswordCorrect]);
 
-  return (
-    <>
-      <div className={styles.container}>
-        <Password
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          src="https://www.maisonvictor.fr/30-large_default/onglet-de-boeuf.jpg"
-          slideAnimation={slideAnimation}
-        />
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className={styles.container}>
+                <Password
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    onKeyDown={handleKeyDown}
+                    src="/onglet.png"
+                    slideAnimation={slideAnimation}
+                />
+            </div>
+        </>
+    );
 };

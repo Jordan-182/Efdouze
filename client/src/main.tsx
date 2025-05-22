@@ -21,6 +21,7 @@ import { BeautyInside } from "./pages/BeautyInside.tsx";
 import { StockageInterne } from "./pages/StockageInterne.tsx";
 import { LastChapter } from "./pages/LastChapter.tsx";
 import "./styles/index.css";
+import { Title } from "./pages/Title.tsx";
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "/SomethingMustBeAddedHere",
         element: <LastChapter />,
+      },
+      {
+        path: "/Title",
+        element: <Title />,
       },
     ],
   },
