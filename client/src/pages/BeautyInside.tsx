@@ -47,7 +47,7 @@ export const BeautyInside = () => {
       }
       setTimeout(() => {
         setSlideAnimation(true);
-        navigate("/");
+        navigate("/26.357896+127.783809");
       }, 400);
     }
   }, [isPasswordCorrect]);
