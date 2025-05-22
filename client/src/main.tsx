@@ -16,6 +16,7 @@ import { Musique } from "./pages/Musique.tsx";
 import { CSS } from "./pages/CSS.tsx";
 import { Icon } from "./pages/Icon.tsx";
 import { KeyboardIsBroken } from "./pages/KeyboardIsBroken.tsx";
+import { Bug } from "./pages/Bug.tsx";
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "/KeyboardIsBroken",
         element: <KeyboardIsBroken />,
+      },
+      {
+        path: "/Bug",
+        element: <Bug />,
       },
     ],
   },
