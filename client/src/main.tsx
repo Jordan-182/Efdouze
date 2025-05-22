@@ -22,6 +22,7 @@ import { StockageInterne } from "./pages/StockageInterne.tsx";
 import { LastChapter } from "./pages/LastChapter.tsx";
 import "./styles/index.css";
 import { Title } from "./pages/Title.tsx";
+import { Batman } from "./pages/batman.tsx";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
       {
         path: "/Title",
         element: <Title />,
+      },
+      {
+        path: "/26.357896+127.783809",
+        element: <Batman/>
       },
     ],
   },
