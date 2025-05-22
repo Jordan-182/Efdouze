@@ -12,6 +12,7 @@ export const Over = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
+  const [slideAnimation, setSlideAnimation] = useState(true);
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -26,7 +27,8 @@ export const Over = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === password) {
-        setIsPasswordCorrect(true);
+        setSlideAnimation(false)
+        setIsPasswordCorrect(true)
       } else if (inputValue === "password") {
         setShowVideo(true);
         setTimeout(() => {
@@ -40,7 +42,10 @@ export const Over = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      navigate("/ThePasswordIsRickRollIPromessItsNotARickRoll");
+      setTimeout(() => {
+        setSlideAnimation(true)
+        navigate("/ThePasswordIsRickRollIPromessItsNotARickRoll");
+      }, 200);
     }
   }, [isPasswordCorrect]);
 
@@ -52,6 +57,7 @@ export const Over = () => {
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           src="src/assets/images/hover.jpg"
+          slideAnimation={slideAnimation}
         />
       </div>
       <div

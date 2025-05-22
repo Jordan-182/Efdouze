@@ -7,6 +7,7 @@ export const PasswordInLink = () => {
   const [inputValue, setInputValue] = useState("");
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
+  const [slideAnimation, setSlideAnimation] = useState(true);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -15,7 +16,8 @@ export const PasswordInLink = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === "RickRoll") {
-        setIsPasswordCorrect(true);
+        setSlideAnimation(false)
+        setIsPasswordCorrect(true)
       } else {
         alert("Incorrect password");
       }
@@ -24,7 +26,10 @@ export const PasswordInLink = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      navigate("/Leon");
+      setTimeout(() => {
+        setSlideAnimation(true)
+        navigate("/Leon");
+      }, 200);
     }
   }, [isPasswordCorrect]);
 
@@ -36,6 +41,7 @@ export const PasswordInLink = () => {
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           src="src/assets/images/link.jpg"
+          slideAnimation={slideAnimation}
         />
       </div>
     </>

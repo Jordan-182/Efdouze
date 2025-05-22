@@ -9,6 +9,7 @@ export const Leon = () => {
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
+  const [slideAnimation, setSlideAnimation] = useState(true);
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -23,7 +24,8 @@ export const Leon = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === password) {
-        setIsPasswordCorrect(true);
+        setSlideAnimation(false)
+        setIsPasswordCorrect(true)
       } else {
         alert("Incorrect password");
       }
@@ -32,7 +34,10 @@ export const Leon = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      navigate("/ReplaceThis");
+      setTimeout(() => {
+        setSlideAnimation(true)
+        navigate("/ReplaceThis");
+      }, 200);
     }
   }, [isPasswordCorrect]);
 
@@ -44,6 +49,7 @@ export const Leon = () => {
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           src="src/assets/images/Leon.jpg"
+          slideAnimation={slideAnimation}
         />
       </div>
       <div className={styles.Leon}>{password}</div>
