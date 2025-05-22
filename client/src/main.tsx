@@ -13,6 +13,7 @@ import { Console } from "./pages/Console.tsx";
 import { Cookie } from "./pages/Cookie.tsx"
 import { Comique } from "./pages/Comique.tsx";
 import { Icon } from "./pages/Icon.tsx"
+import { Bug } from "./pages/Bug.tsx";
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/Icon",
         element: <Icon/>,
+      },
+      {
+        path: "/Bug",
+        element: <Bug/>,
       },
     ],
   },

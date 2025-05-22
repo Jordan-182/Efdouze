@@ -1,12 +1,14 @@
-import Password from "../components/Password";
-import styles from "../styles/Homepage.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Password from "../components/Password";
+import { useCount } from "../context/CountContext";
+import styles from "../styles/Homepage.module.css";
 
-export const Icon = () => {
+export const Bug = () => {
     const [inputValue, setInputValue] = useState("");
     const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
     const navigate = useNavigate();
+    const { count, setCount } = useCount();
     const [slideAnimation, setSlideAnimation] = useState(true);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,9 +17,9 @@ export const Icon = () => {
     };
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
-            if (inputValue === "samus") {
-                setSlideAnimation(false)
-                setIsPasswordCorrect(true)
+            if (inputValue === "LAVACHICKEN") {
+                setSlideAnimation(false);
+                setIsPasswordCorrect(true);
             } else {
                 alert("Incorrect password");
             }
@@ -26,9 +28,11 @@ export const Icon = () => {
 
     useEffect(() => {
         if (isPasswordCorrect) {
+            setCount((prev) => prev + 1);
+            localStorage.setItem("count", (count + 1).toString());
             setTimeout(() => {
-                setSlideAnimation(true)
-                navigate("/CSS");
+                setSlideAnimation(true);
+                navigate("/KeyboardIsBroken");
             }, 400);
         }
     }, [isPasswordCorrect]);
@@ -40,7 +44,7 @@ export const Icon = () => {
                     value={inputValue}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
-                    src="https://www.maisonvictor.fr/30-large_default/onglet-de-boeuf.jpg"
+                    src="/motdepase.png"
                     slideAnimation={slideAnimation}
                 />
             </div>
