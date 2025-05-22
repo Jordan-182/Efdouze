@@ -12,7 +12,10 @@ const CountContext = createContext<CountContextType>({
 });
 
 export const CountProvider = ({ children }: { children: ReactNode }) => {
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState<number>(() => {
+    const storedCount = localStorage.getItem("count");
+    return storedCount ? parseInt(storedCount, 10) : 0;
+  });
 
   return (
     <CountContext.Provider value={{ count, setCount }}>
