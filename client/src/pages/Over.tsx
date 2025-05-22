@@ -1,7 +1,8 @@
-import Password from "../components/Password";
-import styles from "../styles/Over.module.css";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import Password from "../components/Password";
+import { useCount } from "../context/CountContext";
+import styles from "../styles/Over.module.css";
 import { randomPassword } from "../utils/randomPassword";
 
 export const Over = () => {
@@ -11,6 +12,7 @@ export const Over = () => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
+  const { setCount } = useCount();
   const [password, setPassword] = useState("");
   const [slideAnimation, setSlideAnimation] = useState(true);
 
@@ -27,8 +29,8 @@ export const Over = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === password) {
-        setSlideAnimation(false)
-        setIsPasswordCorrect(true)
+        setSlideAnimation(false);
+        setIsPasswordCorrect(true);
       } else if (inputValue === "password") {
         setShowVideo(true);
         setTimeout(() => {
@@ -42,8 +44,9 @@ export const Over = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
+      setCount((prev) => prev + 1);
       setTimeout(() => {
-        setSlideAnimation(true)
+        setSlideAnimation(true);
         navigate("/ThePasswordIsRickRollIPromessItsNotARickRoll");
       }, 400);
     }
