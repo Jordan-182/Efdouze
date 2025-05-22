@@ -19,6 +19,7 @@ import { KeyboardIsBroken } from "./pages/KeyboardIsBroken.tsx";
 import { Bug } from "./pages/Bug.tsx";
 import "./styles/index.css";
 import { Title } from "./pages/Title.tsx";
+import { Batman } from "./pages/batman.tsx";
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
       {
         path: "/Title",
         element: <Title/>
+      },
+      {
+        path: "/26.357896+127.783809",
+        element: <Batman/>
       },
     ],
   },
