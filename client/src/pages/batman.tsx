@@ -18,7 +18,7 @@ export const Batman = () => {
     };
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
-            if (inputValue === "batman") {
+            if (inputValue === "Batman") {
                 const completed = JSON.parse(
                     localStorage.getItem("completedPages") || "[]"
                 );
