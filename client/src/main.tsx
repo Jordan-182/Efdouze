@@ -11,6 +11,8 @@ import { Navigation } from "./pages/Navigation.tsx";
 import { PasswordForNavigation } from "./pages/PasswordForNavigation.tsx";
 import { Console } from "./pages/Console.tsx";
 import { Comique } from "./pages/Comique.tsx";
+import { Musique } from "./pages/Musique.tsx";
+import { CSS } from "./pages/CSS.tsx";
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -48,6 +50,14 @@ const router = createBrowserRouter([
       {
         path: "/Comique",
         element: <Comique />,
+      },
+      {
+        path: "/Musique",
+        element: <Musique />,
+      },
+      {
+        path: "/CSS",
+        element: <CSS />,
       },
     ],
   },
