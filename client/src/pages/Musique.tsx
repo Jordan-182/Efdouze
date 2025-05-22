@@ -31,7 +31,7 @@ export const Musique = () => {
     if (isPasswordCorrect) {
       setTimeout(() => {
         setSlideAnimation(true);
-        navigate("/Clicker");
+        navigate("/Title");
       }, 400);
     }
   }, [isPasswordCorrect]);
