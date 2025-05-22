@@ -9,6 +9,7 @@ export const Over = () => {
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
+  const [slideAnimation, setSlideAnimation] = useState(true);
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -22,7 +23,11 @@ export const Over = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === password) {
-        setIsPasswordCorrect(true);
+        setSlideAnimation(false);
+        setSlideAnimation(true)
+        setTimeout(() => {
+          setIsPasswordCorrect(true)
+        }, 1000);
       } else {
         alert("Incorrect password");
       }
@@ -31,7 +36,10 @@ export const Over = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      navigate("/");
+      setSlideAnimation(true)
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     }
   }, [isPasswordCorrect]);
 
@@ -43,6 +51,7 @@ export const Over = () => {
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           src="src/assets/images/hover.jpg"
+          slideAnimation={slideAnimation}
         />
       </div>
     </>

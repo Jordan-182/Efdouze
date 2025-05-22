@@ -5,12 +5,16 @@ type PasswordProps = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   src: string;
+  slideAnimation: boolean;
 };
 
-function password({ value, onChange, onKeyDown, src }: PasswordProps) {
+
+
+function password({ value, onChange, onKeyDown, src, slideAnimation }: PasswordProps) {
+
   return (
     <>
-      <div className={styles.container}>
+      <div className={slideAnimation? styles.container : styles.containerOut}>
         <img src={src} alt="clue" className={styles.clue} />
         <div className={styles.passwordContainer}>
           <h2>PASSWORD</h2>
