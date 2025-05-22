@@ -17,6 +17,9 @@ import { CSS } from "./pages/CSS.tsx";
 import { Icon } from "./pages/Icon.tsx";
 import { KeyboardIsBroken } from "./pages/KeyboardIsBroken.tsx";
 import { Bug } from "./pages/Bug.tsx";
+import { BeautyInside } from "./pages/BeautyInside.tsx";
+import { StockageInterne } from "./pages/StockageInterne.tsx";
+import { LastChapter } from "./pages/LastChapter.tsx";
 import "./styles/index.css";
 import { Title } from "./pages/Title.tsx";
 import { Batman } from "./pages/batman.tsx";
@@ -82,8 +85,20 @@ const router = createBrowserRouter([
         element: <Bug />,
       },
       {
+        path: "/BeautyInside",
+        element: <BeautyInside />,
+      },
+      {
+        path: "/StockageInterne",
+        element: <StockageInterne />,
+      },
+      {
+        path: "/SomethingMustBeAddedHere",
+        element: <LastChapter />,
+      },
+      {
         path: "/Title",
-        element: <Title/>
+        element: <Title />,
       },
       {
         path: "/26.357896+127.783809",
