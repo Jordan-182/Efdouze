@@ -8,13 +8,16 @@ type PasswordProps = {
   slideAnimation: boolean;
 };
 
-
-
-function password({ value, onChange, onKeyDown, src, slideAnimation }: PasswordProps) {
-
+function password({
+  value,
+  onChange,
+  onKeyDown,
+  src,
+  slideAnimation,
+}: PasswordProps) {
   return (
     <>
-      <div className={slideAnimation? styles.container : styles.containerOut}>
+      <div className={slideAnimation ? styles.container : styles.containerOut}>
         <img src={src} alt="clue" className={styles.clue} />
         <div className={styles.passwordContainer}>
           <h2>PASSWORD</h2>
@@ -22,7 +25,7 @@ function password({ value, onChange, onKeyDown, src, slideAnimation }: PasswordP
             type="password"
             placeholder="Enter password"
             className={styles.password}
-            maxLength={10}
+            maxLength={14}
             value={value}
             onChange={onChange}
             onKeyDown={onKeyDown}

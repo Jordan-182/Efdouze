@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "./App.tsx";
+import { CountProvider } from "./context/CountContext.tsx";
 import { Homepage } from "./pages/Homepage.tsx";
 import { Over } from "./pages/Over.tsx";
 import { PasswordInLink } from "./pages/PasswordInLink.tsx";
@@ -10,6 +11,8 @@ import { Navigation } from "./pages/Navigation.tsx";
 import { PasswordForNavigation } from "./pages/PasswordForNavigation.tsx";
 import { Console } from "./pages/Console.tsx";
 import { Cookie } from "./pages/Cookie.tsx"
+import { Comique } from "./pages/Comique.tsx";
+import { Icon } from "./pages/Icon.tsx"
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -47,13 +50,23 @@ const router = createBrowserRouter([
       {
         path: "/Clicker",
         element: <Cookie/>,
-      }
+      },
+      {
+        path: "/Comique",
+        element: <Comique />,
+      },
+      {
+        path: "/Icon",
+        element: <Icon/>,
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <CountProvider>
+      <RouterProvider router={router} />
+    </CountProvider>
   </StrictMode>
 );
