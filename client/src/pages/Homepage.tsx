@@ -9,6 +9,7 @@ export const Homepage = () => {
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
   const { count, setCount } = useCount();
+  const [slideAnimation, setSlideAnimation] = useState(true);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -17,6 +18,7 @@ export const Homepage = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === "password") {
+        setSlideAnimation(false);
         setIsPasswordCorrect(true);
       } else {
         alert("Incorrect password");
@@ -28,6 +30,10 @@ export const Homepage = () => {
     if (isPasswordCorrect) {
       setCount((prev) => prev + 1);
       navigate("/Over");
+      setTimeout(() => {
+        setSlideAnimation(true);
+        navigate("/Over");
+      }, 200);
     }
   }, [isPasswordCorrect]);
 
@@ -39,6 +45,7 @@ export const Homepage = () => {
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           src="src/assets/images/password.png"
+          slideAnimation={slideAnimation}
         />
       </div>
       {console.log(`compteur : ${count}`)}
