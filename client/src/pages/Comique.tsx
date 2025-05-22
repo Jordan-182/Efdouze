@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Modal from "../components/Modal";
 import Password from "../components/Password";
 import { useCount } from "../context/CountContext";
 import styles from "../styles/Comique.module.css";
@@ -10,6 +11,8 @@ export const Comique = () => {
   const { count, setCount } = useCount();
   const navigate = useNavigate();
   const [slideAnimation, setSlideAnimation] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const pageId = 7;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -18,8 +21,15 @@ export const Comique = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === "comicsansms") {
-        setSlideAnimation(false);
-        setIsPasswordCorrect(true);
+        const completed = JSON.parse(
+          localStorage.getItem("completedPages") || "[]"
+        );
+        if (!completed.includes(pageId)) {
+          setSlideAnimation(false);
+          setIsPasswordCorrect(true);
+        } else {
+          setShowModal(true);
+        }
       } else {
         alert("Incorrect password");
       }
@@ -28,8 +38,15 @@ export const Comique = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      setCount((prev) => prev + 1);
-      localStorage.setItem("count", (count + 1).toString());
+      const completed = JSON.parse(
+        localStorage.getItem("completedPages") || "[]"
+      );
+      if (!completed.includes(pageId)) {
+        setCount((prev) => prev + 1);
+        localStorage.setItem("count", (count + 1).toString());
+        const updated = [...completed, pageId];
+        localStorage.setItem("completedPages", JSON.stringify(updated));
+      }
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/Clicker");
@@ -43,6 +60,7 @@ export const Comique = () => {
         <img src="src/assets/images/comique.png" />
       </div>
       <div className={styles.container}>
+        <Modal isOpen={showModal} link="/Clicker" />
         <Password
           value={inputValue}
           onChange={handleInputChange}

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import Modal from "../components/Modal";
 import Password from "../components/Password";
 import { useCount } from "../context/CountContext";
 import styles from "../styles/Over.module.css";
@@ -15,6 +16,8 @@ export const Over = () => {
   const { count, setCount } = useCount();
   const [password, setPassword] = useState("");
   const [slideAnimation, setSlideAnimation] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const pageId = 2;
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -29,8 +32,15 @@ export const Over = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === password) {
-        setSlideAnimation(false);
-        setIsPasswordCorrect(true);
+        const completed = JSON.parse(
+          localStorage.getItem("completedPages") || "[]"
+        );
+        if (!completed.includes(pageId)) {
+          setSlideAnimation(false);
+          setIsPasswordCorrect(true);
+        } else {
+          setShowModal(true);
+        }
       } else if (inputValue === "password") {
         setShowVideo(true);
         setTimeout(() => {
@@ -44,8 +54,15 @@ export const Over = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      setCount((prev) => prev + 1);
-      localStorage.setItem("count", (count + 1).toString());
+      const completed = JSON.parse(
+        localStorage.getItem("completedPages") || "[]"
+      );
+      if (!completed.includes(pageId)) {
+        setCount((prev) => prev + 1);
+        localStorage.setItem("count", (count + 1).toString());
+        const updated = [...completed, pageId];
+        localStorage.setItem("completedPages", JSON.stringify(updated));
+      }
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/ThePasswordIsRickRollIPromessItsNotARickRoll");
@@ -56,6 +73,10 @@ export const Over = () => {
   return (
     <>
       <div className={styles.container}>
+        <Modal
+          isOpen={showModal}
+          link="/ThePasswordIsRickRollIPromessItsNotARickRoll"
+        />
         <Password
           value={inputValue}
           onChange={handleInputChange}
