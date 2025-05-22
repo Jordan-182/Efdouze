@@ -1,11 +1,13 @@
-import Password from "../components/Password";
-import styles from "../styles/Comique.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Password from "../components/Password";
+import { useCount } from "../context/CountContext";
+import styles from "../styles/Comique.module.css";
 
 export const Comique = () => {
   const [inputValue, setInputValue] = useState("");
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
+  const { count, setCount } = useCount();
   const navigate = useNavigate();
   const [slideAnimation, setSlideAnimation] = useState(true);
 
@@ -26,6 +28,8 @@ export const Comique = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
+      setCount((prev) => prev + 1);
+      localStorage.setItem("count", (count + 1).toString());
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/Clicker");
