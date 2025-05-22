@@ -1,20 +1,28 @@
 import Password from "../components/Password";
-import styles from "../styles/Homepage.module.css";
+import styles from "../styles/Leon.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-export const Navigation = () => {
+export const Console = () => {
   const [inputValue, setInputValue] = useState("");
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsPasswordCorrect(false);
+  }, []);
+
+  const password = "PCMasterRace";
+  console.log(password);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setInputValue(value);
   };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "Haddock") {
+      if (inputValue === "PCMasterRace") {
         setIsPasswordCorrect(true);
       } else {
         alert("Incorrect password");
@@ -24,7 +32,7 @@ export const Navigation = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      navigate("/Log");
+      navigate("/Comique");
     }
   }, [isPasswordCorrect]);
 
@@ -35,7 +43,7 @@ export const Navigation = () => {
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          src="src/assets/images/navigation.jpg"
+          src="src/assets/images/consoles.jpg"
         />
       </div>
     </>

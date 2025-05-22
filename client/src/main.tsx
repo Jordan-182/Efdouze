@@ -8,6 +8,7 @@ import { PasswordInLink } from "./pages/PasswordInLink.tsx";
 import { Leon } from "./pages/Leon.tsx";
 import { Navigation } from "./pages/Navigation.tsx";
 import { PasswordForNavigation } from "./pages/PasswordForNavigation.tsx";
+import { Console } from "./pages/Console.tsx";
 import "./styles/index.css";
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/Password",
         element: <PasswordForNavigation />,
+      },
+      {
+        path: "/Log",
+        element: <Console />,
       },
     ],
   },
