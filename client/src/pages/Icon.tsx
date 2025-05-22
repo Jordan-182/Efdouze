@@ -20,7 +20,7 @@ export const Icon = () => {
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "samus") {
+      if (inputValue === "password") {
         const completed = JSON.parse(
           localStorage.getItem("completedPages") || "[]"
         );
@@ -49,7 +49,7 @@ export const Icon = () => {
       }
       setTimeout(() => {
         setSlideAnimation(true);
-        navigate("/Musique");
+        navigate("/CSS");
       }, 400);
     }
   }, [isPasswordCorrect]);
