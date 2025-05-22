@@ -9,7 +9,7 @@ export const Console = () => {
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
   const [slideAnimation, setSlideAnimation] = useState(true);
-  const { setCount } = useCount();
+  const { count, setCount } = useCount();
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -37,6 +37,7 @@ export const Console = () => {
   useEffect(() => {
     if (isPasswordCorrect) {
       setCount((prev) => prev + 1);
+      localStorage.setItem("count", (count + 1).toString());
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/Comique");

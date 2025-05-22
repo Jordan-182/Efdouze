@@ -29,6 +29,7 @@ export const Homepage = () => {
   useEffect(() => {
     if (isPasswordCorrect) {
       setCount((prev) => prev + 1);
+      localStorage.setItem("count", (count + 1).toString());
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/Over");
@@ -47,7 +48,6 @@ export const Homepage = () => {
           slideAnimation={slideAnimation}
         />
       </div>
-      {console.log(`compteur : ${count}`)}
     </>
   );
 };
