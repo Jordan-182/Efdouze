@@ -4,34 +4,34 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 export const Icon = () => {
-    const [inputValue, setInputValue] = useState("");
-    const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
-    const navigate = useNavigate();
-    const [slideAnimation, setSlideAnimation] = useState(true);
+  const [inputValue, setInputValue] = useState("");
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
+  const navigate = useNavigate();
+  const [slideAnimation, setSlideAnimation] = useState(true);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setInputValue(value);
-    };
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            if (inputValue === "samus") {
-                setSlideAnimation(false)
-                setIsPasswordCorrect(true)
-            } else {
-                alert("Incorrect password");
-            }
-        }
-    };
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setInputValue(value);
+  };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      if (inputValue === "samus") {
+        setSlideAnimation(false);
+        setIsPasswordCorrect(true);
+      } else {
+        alert("Incorrect password");
+      }
+    }
+  };
 
-    useEffect(() => {
-        if (isPasswordCorrect) {
-            setTimeout(() => {
-                setSlideAnimation(true)
-                navigate("/CSS");
-            }, 400);
-        }
-    }, [isPasswordCorrect]);
+  useEffect(() => {
+    if (isPasswordCorrect) {
+      setTimeout(() => {
+        setSlideAnimation(true);
+        navigate("/CSS");
+      }, 400);
+    }
+  }, [isPasswordCorrect]);
 
     return (
         <>

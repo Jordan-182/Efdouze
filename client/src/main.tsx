@@ -10,9 +10,12 @@ import { Leon } from "./pages/Leon.tsx";
 import { Navigation } from "./pages/Navigation.tsx";
 import { PasswordForNavigation } from "./pages/PasswordForNavigation.tsx";
 import { Console } from "./pages/Console.tsx";
-import { Cookie } from "./pages/Cookie.tsx"
+import { Cookie } from "./pages/Cookie.tsx";
 import { Comique } from "./pages/Comique.tsx";
-import { Icon } from "./pages/Icon.tsx"
+import { Musique } from "./pages/Musique.tsx";
+import { CSS } from "./pages/CSS.tsx";
+import { Icon } from "./pages/Icon.tsx";
+import { KeyboardIsBroken } from "./pages/KeyboardIsBroken.tsx";
 import { Bug } from "./pages/Bug.tsx";
 import "./styles/index.css";
 import { Title } from "./pages/Title.tsx";
@@ -51,19 +54,31 @@ const router = createBrowserRouter([
       },
       {
         path: "/Clicker",
-        element: <Cookie/>,
+        element: <Cookie />,
       },
       {
         path: "/Comique",
         element: <Comique />,
       },
       {
+        path: "/Musique",
+        element: <Musique />,
+      },
+      {
+        path: "/CSS",
+        element: <CSS />,
+      },
+      {
         path: "/Icon",
-        element: <Icon/>,
+        element: <Icon />,
+      },
+      {
+        path: "/KeyboardIsBroken",
+        element: <KeyboardIsBroken />,
       },
       {
         path: "/Bug",
-        element: <Bug/>,
+        element: <Bug />,
       },
       {
         path: "/Title",
