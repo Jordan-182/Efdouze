@@ -3,7 +3,7 @@ import styles from "../styles/Homepage.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-export const Cookie = () => {
+export const Icon = () => {
     const [inputValue, setInputValue] = useState("");
     const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ export const Cookie = () => {
     };
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
-            if (inputValue === "GoodJob") {
+            if (inputValue === "samus") {
                 setSlideAnimation(false)
                 setIsPasswordCorrect(true)
             } else {
@@ -25,11 +25,10 @@ export const Cookie = () => {
     };
 
     useEffect(() => {
-        document.cookie = "password=GoodJob; path=/";
         if (isPasswordCorrect) {
             setTimeout(() => {
                 setSlideAnimation(true)
-                navigate("/Icon");
+                navigate("/Musique");
             }, 400);
         }
     }, [isPasswordCorrect]);
@@ -41,7 +40,7 @@ export const Cookie = () => {
                     value={inputValue}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
-                    src="https://m.media-amazon.com/images/I/61PjDmmrnrL._AC_UF894,1000_QL80_.jpg"
+                    src="https://www.maisonvictor.fr/30-large_default/onglet-de-boeuf.jpg"
                     slideAnimation={slideAnimation}
                 />
             </div>
