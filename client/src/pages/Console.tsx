@@ -1,23 +1,29 @@
+import Password from "../components/Password";
+import styles from "../styles/Leon.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Password from "../components/Password";
-import { useCount } from "../context/CountContext";
-import styles from "../styles/Homepage.module.css";
 
-export const Navigation = () => {
+export const Console = () => {
   const [inputValue, setInputValue] = useState("");
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
   const [slideAnimation, setSlideAnimation] = useState(true);
-  const { setCount } = useCount();
+
+  useEffect(() => {
+    setIsPasswordCorrect(false);
+  }, []);
+
+  const password = "PCFTW";
+  console.log(password);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setInputValue(value);
   };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "Haddock") {
+      if (inputValue === "PCFTW") {
         setSlideAnimation(false);
         setIsPasswordCorrect(true);
       } else {
@@ -28,11 +34,10 @@ export const Navigation = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      setCount((prev) => prev + 1);
       setTimeout(() => {
         setSlideAnimation(true);
-        navigate("/Log");
-      }, 400);
+        navigate("/Comique");
+      }, 200);
     }
   }, [isPasswordCorrect]);
 
@@ -43,7 +48,7 @@ export const Navigation = () => {
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          src="src/assets/images/navigation.jpg"
+          src="src/assets/images/consoles.jpg"
           slideAnimation={slideAnimation}
         />
       </div>
