@@ -47,6 +47,7 @@ export const KeyboardIsBroken = () => {
           onKeyDown={handleKeyDown}
           src="src/assets/images/disable.png"
           slideAnimation={slideAnimation}
+          maxLength={14}
         />
       </div>
     </>

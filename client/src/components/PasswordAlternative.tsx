@@ -7,6 +7,7 @@ type PasswordProps = {
   src: string;
   slideAnimation: boolean;
   Disable?: boolean;
+  maxLength: number;
 };
 
 function passwordAlternative({
@@ -16,6 +17,7 @@ function passwordAlternative({
   src,
   slideAnimation,
   Disable,
+  maxLength,
 }: PasswordProps) {
   return (
     <>
@@ -28,7 +30,7 @@ function passwordAlternative({
             type="password"
             placeholder="Enter password"
             className={styles.password}
-            maxLength={14}
+            maxLength={maxLength}
             value={value}
             onChange={onChange}
             onKeyDown={onKeyDown}
