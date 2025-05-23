@@ -62,7 +62,7 @@ export const Icon = () => {
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          src="https://www.maisonvictor.fr/30-large_default/onglet-de-boeuf.jpg"
+          src="/onglet.png"
           slideAnimation={slideAnimation}
         />
       </div>

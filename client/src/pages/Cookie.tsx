@@ -36,6 +36,16 @@ export const Cookie = () => {
     }
   };
 
+    useEffect(() => {
+        document.cookie = "password=GoodJob";
+        if (isPasswordCorrect) {
+            setTimeout(() => {
+                setSlideAnimation(true)
+                navigate("/Icon");
+            }, 400);
+        }
+    }, [isPasswordCorrect]);
+    
   useEffect(() => {
     if (isPasswordCorrect) {
       const completed = JSON.parse(
