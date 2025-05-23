@@ -3,7 +3,8 @@ import { useNavigate } from "react-router";
 import Modal from "../components/Modal";
 import Password from "../components/Password";
 import { useCount } from "../context/CountContext";
-import styles from "../styles/Homepage.module.css";
+import styles from "../styles/LastChapter.module.css";
+import { useRef as useReactRef } from "react";
 
 export const LastChapter = () => {
   const [inputValue, setInputValue] = useState("");
@@ -14,6 +15,9 @@ export const LastChapter = () => {
   const [showModal, setShowModal] = useState(false);
   const pageId = 18;
   const [isError, setIsError] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const videoRef = useReactRef<HTMLVideoElement>(null);
+  const [hasPlayedVideo, setHasPlayedVideo] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -36,6 +40,13 @@ export const LastChapter = () => {
         setTimeout(() => {
           setIsError(false);
         }, 1000);
+        if (!hasPlayedVideo) {
+          setShowVideo(true);
+          setHasPlayedVideo(true);
+          setTimeout(() => {
+            videoRef.current?.play();
+          }, 0);
+        }
       }
     }
   };
@@ -67,6 +78,17 @@ export const LastChapter = () => {
 
   return (
     <>
+      <div className={styles.video}>
+        <video
+          ref={videoRef}
+          src="src/assets/video/cheh.mp4"
+          width="560"
+          height="315"
+          preload="auto"
+          style={{ display: showVideo ? "block" : "none" }}
+          onEnded={() => setShowVideo(false)}
+        />
+      </div>
       <div className={styles.container}>
         <Modal isOpen={showModal} link="/Final" />
         <Password
