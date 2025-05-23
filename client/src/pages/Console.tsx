@@ -3,7 +3,8 @@ import { useNavigate } from "react-router";
 import Modal from "../components/Modal";
 import Password from "../components/Password";
 import { useCount } from "../context/CountContext";
-import styles from "../styles/Leon.module.css";
+import styles from "../styles/Console.module.css";
+import { useRef as useReactRef } from "react";
 
 export const Console = () => {
   const [inputValue, setInputValue] = useState("");
@@ -14,6 +15,9 @@ export const Console = () => {
   const { count, setCount } = useCount();
   const pageId = 6;
   const [isError, setIsError] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const videoRef = useReactRef<HTMLVideoElement>(null);
+  const [hasPlayedVideo, setHasPlayedVideo] = useState(false);
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -38,6 +42,18 @@ export const Console = () => {
           setIsPasswordCorrect(true);
         } else {
           setShowModal(true);
+        }
+      } else if (
+        inputValue === "sega" ||
+        inputValue === "Sega" ||
+        inputValue === "SEGA"
+      ) {
+        if (!hasPlayedVideo) {
+          setShowVideo(true);
+          setHasPlayedVideo(true);
+          setTimeout(() => {
+            videoRef.current?.play();
+          }, 0);
         }
       } else {
         setIsError(true);
@@ -68,6 +84,18 @@ export const Console = () => {
 
   return (
     <>
+      <div className={styles.video}>
+        <video
+          ref={videoRef}
+          src="src/assets/video/piege.mp4"
+          width="560"
+          height="315"
+          preload="auto"
+          style={{ display: showVideo ? "block" : "none" }}
+          onEnded={() => setShowVideo(false)}
+        />
+      </div>
+
       <div className={styles.container}>
         <Modal isOpen={showModal} link="/Comique" />
         <Password
