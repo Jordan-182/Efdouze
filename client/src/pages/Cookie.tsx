@@ -18,6 +18,8 @@ export const Cookie = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.toLowerCase();
     setInputValue(value);
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === "goodjob") {
@@ -39,16 +41,16 @@ export const Cookie = () => {
     }
   };
 
-    useEffect(() => {
-        document.cookie = "password=GoodJob";
-        if (isPasswordCorrect) {
-            setTimeout(() => {
-                setSlideAnimation(true)
-                navigate("/Icon");
-            }, 400);
-        }
-    }, [isPasswordCorrect]);
-    
+  useEffect(() => {
+    document.cookie = "password=GoodJob";
+    if (isPasswordCorrect) {
+      setTimeout(() => {
+        setSlideAnimation(true);
+        navigate("/Icon");
+      }, 400);
+    }
+  }, [isPasswordCorrect]);
+
   useEffect(() => {
     if (isPasswordCorrect) {
       const completed = JSON.parse(
