@@ -32,6 +32,7 @@ export const Batman = () => {
           setShowModal(true);
         }
       } else {
+        window.open('https://i.imgflip.com/9uxt7i.jpg', '_blank')
         setIsError(true);
         setTimeout(() => {
           setIsError(false);
