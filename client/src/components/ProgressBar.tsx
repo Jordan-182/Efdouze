@@ -6,7 +6,7 @@ export const ProgressBar = () => {
   const countPercent = count !== 0 ? (count / 18) * 100 : 0;
   return (
     <section className={styles.progressBarContainer}>
-      <p>{`Progression : ${count} / 18 soit ${countPercent.toFixed(0)}%`}</p>
+      <p>{`Progression : ${countPercent.toFixed(0)}%`}</p>
       <div className={styles.progressBar}>
         <div
           className={styles.progression}
