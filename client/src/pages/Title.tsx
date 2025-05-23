@@ -48,7 +48,7 @@ export const Title = () => {
           setSlideAnimation(false);
           setIsPasswordCorrect(true);
         } else {
-          alert("Mot de passe déjà trouvé pour cette page!");
+          setShowModal(true);
         }
       }
     }, 1000);
