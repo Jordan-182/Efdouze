@@ -12,6 +12,31 @@ body {
   border-radius: 5px;
 }
 
+.wow {
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  transform: rotate(-45deg);
+  transform: translate(-50%);
+  font-size: 4rem;
+  color: red;
+}
+
+.gpt {
+  position: absolute;
+  transform: rotate(-45deg);
+  font-size: 4rem;
+  color: blue;
+}
+
+.such {
+  position: absolute;
+  transform: rotate(45deg);
+  right: 0;
+  font-size: 4rem;
+  color: green;
+}
+
 .pyro > .before,
 .pyro > .after {
   position: absolute;
