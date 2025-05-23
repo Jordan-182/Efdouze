@@ -14,6 +14,7 @@ export const Batman = () => {
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [isError, setIsError] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [isTrue, setIsTrue] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -31,8 +32,14 @@ export const Batman = () => {
         } else {
           setShowModal(true);
         }
+      } else if(!isTrue){
+        window.open('https://i.imgflip.com/9uxt7i.jpg')
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
+        setIsTrue(true)
       } else {
-        window.open('https://i.imgflip.com/9uxt7i.jpg', '_blank')
         setIsError(true);
         setTimeout(() => {
           setIsError(false);

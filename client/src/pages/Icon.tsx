@@ -96,6 +96,3 @@ export const Icon = () => {
     </>
   );
 };
-function useRef<T>(arg0: null) {
-  throw new Error("Function not implemented.");
-}
