@@ -32,6 +32,7 @@ export const PasswordInLink = () => {
           setShowModal(true);
         }
       } else {
+        window.open('https://i.imgflip.com/9uxy2p.jpg')
         setIsError(true);
         setTimeout(() => {
           setIsError(false);
