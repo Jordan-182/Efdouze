@@ -32,7 +32,10 @@ export const Homepage = () => {
         } else {
           setShowModal(true);
         }
-      } else {
+      } else if (inputValue === 'assword' || inputValue === 'assword*') {
+        window.open('/assworld.png')
+       }
+      else {
         setIsError(true);
         setTimeout(() => {
           setIsError(false);
