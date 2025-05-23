@@ -21,8 +21,9 @@ export const Title = () => {
     setInputValue(value);
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const valeur = h2Ref.current ? h2Ref.current.textContent : "";
     if (event.key === "Enter") {
-      if (inputValue === "password") {
+      if (valeur === "TonyHawk") {
         const completed = JSON.parse(
           localStorage.getItem("completedPages") || "[]"
         );
@@ -52,7 +53,25 @@ export const Title = () => {
           setSlideAnimation(false);
           setIsPasswordCorrect(true);
         } else {
-          alert("Mot de passe déjà trouvé pour cette page!");
+          setShowModal(true);
+        }
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const valeur = h2Ref.current ? h2Ref.current.textContent : "";
+      if (valeur === "TonyHawk") {
+        const completed = JSON.parse(
+          localStorage.getItem("completedPages") || "[]"
+        );
+        if (!completed.includes(pageId)) {
+          setSlideAnimation(false);
+          setIsPasswordCorrect(true);
+        } else {
+          setShowModal(true);
         }
       }
     }, 1000);

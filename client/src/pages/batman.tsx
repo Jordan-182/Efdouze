@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Modal from "../components/Modal";
 import Password from "../components/Password";
 import { useCount } from "../context/CountContext";
 import styles from "../styles/Homepage.module.css";
@@ -12,6 +13,7 @@ export const Batman = () => {
   const { count, setCount } = useCount();
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -27,13 +29,13 @@ export const Batman = () => {
           setSlideAnimation(false);
           setIsPasswordCorrect(true);
         } else {
-          setIsError(true);
-          setTimeout(() => {
-            setIsError(false);
-          }, 1000);
+          setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -59,6 +61,8 @@ export const Batman = () => {
   return (
     <>
       <div className={styles.container}>
+        <Modal isOpen={showModal} link="/StockageInterne" />
+
         <Password
           value={inputValue}
           onChange={handleInputChange}
