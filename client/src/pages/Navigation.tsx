@@ -31,7 +31,7 @@ export const Navigation = () => {
           setShowModal(true);
         }
       } else {
-        setShowModal(true);
+        alert("Incorrect password");
       }
     }
   };
