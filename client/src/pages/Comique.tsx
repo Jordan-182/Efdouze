@@ -32,6 +32,7 @@ export const Comique = () => {
           setShowModal(true);
         }
       } else {
+        window.open('https://i.imgflip.com/9uxts8.jpg')
         setIsError(true);
         setTimeout(() => {
           setIsError(false);
