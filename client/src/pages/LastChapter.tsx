@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Modal from "../components/Modal";
 import Password from "../components/Password";
 import { useCount } from "../context/CountContext";
 import styles from "../styles/Homepage.module.css";
@@ -10,6 +11,7 @@ export const LastChapter = () => {
   const navigate = useNavigate();
   const { count, setCount } = useCount();
   const [slideAnimation, setSlideAnimation] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const pageId = 18;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +28,7 @@ export const LastChapter = () => {
           setSlideAnimation(false);
           setIsPasswordCorrect(true);
         } else {
-          alert("Mot de passe déjà trouvé pour cette page!");
+          setShowModal(true);
         }
       } else {
         alert("Incorrect password");
@@ -62,6 +64,7 @@ export const LastChapter = () => {
   return (
     <>
       <div className={styles.container}>
+        <Modal isOpen={showModal} link="/" />
         <Password
           value={inputValue}
           onChange={handleInputChange}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Modal from "../components/Modal";
 import Password from "../components/Password";
 import { useCount } from "../context/CountContext";
 import styles from "../styles/Homepage.module.css";
@@ -10,6 +11,8 @@ export const Homepage = () => {
   const navigate = useNavigate();
   const { count, setCount } = useCount();
   const [slideAnimation, setSlideAnimation] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const pageId = 1;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -18,8 +21,15 @@ export const Homepage = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === "password") {
-        setSlideAnimation(false);
-        setIsPasswordCorrect(true);
+        const completed = JSON.parse(
+          localStorage.getItem("completedPages") || "[]"
+        );
+        if (!completed.includes(pageId)) {
+          setSlideAnimation(false);
+          setIsPasswordCorrect(true);
+        } else {
+          setShowModal(true);
+        }
       } else {
         alert("Incorrect password");
       }
@@ -28,8 +38,15 @@ export const Homepage = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      setCount((prev) => prev + 1);
-      localStorage.setItem("count", (count + 1).toString());
+      const completed = JSON.parse(
+        localStorage.getItem("completedPages") || "[]"
+      );
+      if (!completed.includes(pageId)) {
+        setCount((prev) => prev + 1);
+        localStorage.setItem("count", (count + 1).toString());
+        const updated = [...completed, pageId];
+        localStorage.setItem("completedPages", JSON.stringify(updated));
+      }
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/Over");
@@ -40,6 +57,7 @@ export const Homepage = () => {
   return (
     <>
       <div className={styles.container}>
+        <Modal isOpen={showModal} link="/Over" />
         <Password
           value={inputValue}
           onChange={handleInputChange}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Modal from "../components/Modal";
 import Password from "../components/Password";
 import { useCount } from "../context/CountContext";
 import styles from "../styles/Leon.module.css";
@@ -9,7 +10,9 @@ export const Console = () => {
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
   const navigate = useNavigate();
   const [slideAnimation, setSlideAnimation] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const { count, setCount } = useCount();
+  const pageId = 6;
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -25,9 +28,16 @@ export const Console = () => {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "PCFTW") {
-        setSlideAnimation(false);
-        setIsPasswordCorrect(true);
+      if (inputValue === password) {
+        const completed = JSON.parse(
+          localStorage.getItem("completedPages") || "[]"
+        );
+        if (!completed.includes(pageId)) {
+          setSlideAnimation(false);
+          setIsPasswordCorrect(true);
+        } else {
+          setShowModal(true);
+        }
       } else {
         alert("Incorrect password");
       }
@@ -36,8 +46,15 @@ export const Console = () => {
 
   useEffect(() => {
     if (isPasswordCorrect) {
-      setCount((prev) => prev + 1);
-      localStorage.setItem("count", (count + 1).toString());
+      const completed = JSON.parse(
+        localStorage.getItem("completedPages") || "[]"
+      );
+      if (!completed.includes(pageId)) {
+        setCount((prev) => prev + 1);
+        localStorage.setItem("count", (count + 1).toString());
+        const updated = [...completed, pageId];
+        localStorage.setItem("completedPages", JSON.stringify(updated));
+      }
       setTimeout(() => {
         setSlideAnimation(true);
         navigate("/Comique");
@@ -48,6 +65,7 @@ export const Console = () => {
   return (
     <>
       <div className={styles.container}>
+        <Modal isOpen={showModal} link="/Comique" />
         <Password
           value={inputValue}
           onChange={handleInputChange}

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import Modal from "../components/Modal";
+import PasswordAlternative from "../components/PasswordAlternative";
 import { useCount } from "../context/CountContext";
 import styles from "../styles/Homepage.module.css";
-import PasswordAlternative from "../components/PasswordAlternative";
 
 export const Title = () => {
     const pageId = 14
@@ -11,7 +12,8 @@ export const Title = () => {
     const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
     const navigate = useNavigate();
     const { count, setCount } = useCount();
-    const [slideAnimation, setSlideAnimation] = useState(true);
+  const [slideAnimation, setSlideAnimation] = useState(true);
+  const [showModal, setShowModal] = useState(false);
     
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
@@ -28,7 +30,7 @@ export const Title = () => {
                     setSlideAnimation(false);
                     setIsPasswordCorrect(true);
                 } else {
-                    alert("Mot de passe déjà trouvé pour cette page!");
+                  setShowModal(true);
                 }
             } else {
                 alert("Incorrect password");
@@ -47,45 +49,66 @@ export const Title = () => {
                     setSlideAnimation(false);
                     setIsPasswordCorrect(true);
                 } else {
-                    alert("Mot de passe déjà trouvé pour cette page!");
+                  setShowModal(true);
                 }
             }
         }, 1000);
         return () => clearInterval(interval);
     }, []);
-
-    useEffect(() => {
-        if (isPasswordCorrect) {
-            const completed = JSON.parse(
-                localStorage.getItem("completedPages") || "[]"
-            );
-            if (!completed.includes(pageId)) {
-                setCount((prev) => prev + 1);
-                localStorage.setItem("count", (count + 1).toString());
-                const updated = [...completed, pageId];
-                localStorage.setItem("completedPages", JSON.stringify(updated));
-            }
-            setTimeout(() => {
-                setSlideAnimation(true);
-                navigate("/BeautyInside");
-            }, 400);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const valeur = h2Ref.current ? h2Ref.current.textContent : "";
+      if (valeur === "TonyHawk") {
+        const completed = JSON.parse(
+          localStorage.getItem("completedPages") || "[]"
+        );
+        if (!completed.includes(pageId)) {
+          setSlideAnimation(false);
+          setIsPasswordCorrect(true);
+        } else {
+          alert("Mot de passe déjà trouvé pour cette page!");
         }
-    }, [isPasswordCorrect]);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
-    return (
-        <>
-            <h2 className={styles.pageTitle} ref={h2Ref} id="PasswordHere"> </h2>
-            <div className={styles.container}>
-                <PasswordAlternative
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onKeyDown={handleKeyDown}
-                    src="/proSkater.jpg"
-                    slideAnimation={slideAnimation}
-                    Disable={false}
-                    maxLength={0}
-                />
-            </div>
-        </>
-    );
+  useEffect(() => {
+    if (isPasswordCorrect) {
+      const completed = JSON.parse(
+        localStorage.getItem("completedPages") || "[]"
+      );
+      if (!completed.includes(pageId)) {
+        setCount((prev) => prev + 1);
+        localStorage.setItem("count", (count + 1).toString());
+        const updated = [...completed, pageId];
+        localStorage.setItem("completedPages", JSON.stringify(updated));
+      }
+      setTimeout(() => {
+        setSlideAnimation(true);
+        navigate("/BeautyInside");
+      }, 400);
+    }
+  }, [isPasswordCorrect]);
+
+  return (
+    <>
+      <h2 className={styles.pageTitle} ref={h2Ref} id="PasswordHere">
+        {" "}
+      </h2>
+      <div className={styles.container}>
+        <Modal isOpen={showModal} link="/BeautyInside" />
+        <PasswordAlternative
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          src="/proSkater.jpg"
+          slideAnimation={slideAnimation}
+          Disable={false}
+          maxLength={0}
+        />
+      </div>
+    </>
+  );
 };

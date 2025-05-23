@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Modal from "../components/Modal";
 import Password from "../components/Password";
 import { useCount } from "../context/CountContext";
 import styles from "../styles/CSS.module.css";
@@ -11,7 +12,10 @@ export const CSS = () => {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [slideAnimation, setSlideAnimation] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const { setCount } = useCount();
+
+  const pageId = 10;
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -26,8 +30,15 @@ export const CSS = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       if (inputValue === password) {
-        setSlideAnimation(false);
-        setIsPasswordCorrect(true);
+        const completed = JSON.parse(
+          localStorage.getItem("completedPages") || "[]"
+        );
+        if (!completed.includes(pageId)) {
+          setSlideAnimation(false);
+          setIsPasswordCorrect(true);
+        } else {
+          setShowModal(true);
+        }
       } else {
         alert("Incorrect password");
       }
@@ -47,6 +58,7 @@ export const CSS = () => {
   return (
     <>
       <div className={styles.container}>
+        <Modal isOpen={showModal} link="/Bug" />
         <Password
           value={inputValue}
           onChange={handleInputChange}
