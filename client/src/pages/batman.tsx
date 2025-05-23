@@ -5,65 +5,69 @@ import { useCount } from "../context/CountContext";
 import styles from "../styles/Homepage.module.css";
 
 export const Batman = () => {
-    const pageId=16
-    const [inputValue, setInputValue] = useState("");
-    const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
-    const navigate = useNavigate();
-    const { count, setCount } = useCount();
-    const [slideAnimation, setSlideAnimation] = useState(true);
+  const pageId = 16;
+  const [inputValue, setInputValue] = useState("");
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
+  const navigate = useNavigate();
+  const { count, setCount } = useCount();
+  const [slideAnimation, setSlideAnimation] = useState(true);
+  const [isError, setIsError] = useState(false);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setInputValue(value);
-    };
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            if (inputValue === "Batman") {
-                const completed = JSON.parse(
-                    localStorage.getItem("completedPages") || "[]"
-                );
-                if (!completed.includes(pageId)) {
-                    setSlideAnimation(false);
-                    setIsPasswordCorrect(true);
-                } else {
-                    alert("Mot de passe déjà trouvé pour cette page!");
-                }
-            } else {
-                alert("Incorrect password");
-            }
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setInputValue(value);
+  };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      if (inputValue === "Batman") {
+        const completed = JSON.parse(
+          localStorage.getItem("completedPages") || "[]"
+        );
+        if (!completed.includes(pageId)) {
+          setSlideAnimation(false);
+          setIsPasswordCorrect(true);
+        } else {
+          setIsError(true);
+          setTimeout(() => {
+            setIsError(false);
+          }, 1000);
         }
-    };
-    
+      } else {
+        alert("Incorrect password");
+      }
+    }
+  };
 
-    useEffect(() => {
-        if (isPasswordCorrect) {
-            const completed = JSON.parse(
-                localStorage.getItem("completedPages") || "[]"
-            );
-            if (!completed.includes(pageId)) {
-                setCount((prev) => prev + 1);
-                localStorage.setItem("count", (count + 1).toString());
-                const updated = [...completed, pageId];
-                localStorage.setItem("completedPages", JSON.stringify(updated));
-            }
-            setTimeout(() => {
-                setSlideAnimation(true);
-                navigate("/StockageInterne");
-            }, 400);
-        }
-    }, [isPasswordCorrect]);
+  useEffect(() => {
+    if (isPasswordCorrect) {
+      const completed = JSON.parse(
+        localStorage.getItem("completedPages") || "[]"
+      );
+      if (!completed.includes(pageId)) {
+        setCount((prev) => prev + 1);
+        localStorage.setItem("count", (count + 1).toString());
+        const updated = [...completed, pageId];
+        localStorage.setItem("completedPages", JSON.stringify(updated));
+      }
+      setTimeout(() => {
+        setSlideAnimation(true);
+        navigate("/StockageInterne");
+      }, 400);
+    }
+  }, [isPasswordCorrect]);
 
-    return (
-        <>
-            <div className={styles.container}>
-                <Password
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onKeyDown={handleKeyDown}
-                    src="https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/full_width/public/thumbnails/image/NASA_Earth.jpg"
-                    slideAnimation={slideAnimation}
-                />
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className={styles.container}>
+        <Password
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          src="https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/full_width/public/thumbnails/image/NASA_Earth.jpg"
+          slideAnimation={slideAnimation}
+          isError={isError}
+        />
+      </div>
+    </>
+  );
 };

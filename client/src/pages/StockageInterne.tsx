@@ -15,6 +15,7 @@ export const StockageInterne = () => {
   const pageId = 17;
   const [password, setPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -40,7 +41,10 @@ export const StockageInterne = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -73,6 +77,7 @@ export const StockageInterne = () => {
           onKeyDown={handleKeyDown}
           src="src/assets/images/stockage.jpg"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>

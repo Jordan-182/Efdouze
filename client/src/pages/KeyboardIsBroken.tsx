@@ -13,6 +13,7 @@ export const KeyboardIsBroken = () => {
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const pageId = 12;
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -31,7 +32,10 @@ export const KeyboardIsBroken = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -66,6 +70,7 @@ export const KeyboardIsBroken = () => {
           src="src/assets/images/disable.png"
           slideAnimation={slideAnimation}
           maxLength={14}
+          isError={isError}
         />
       </div>
     </>

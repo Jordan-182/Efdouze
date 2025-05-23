@@ -13,6 +13,7 @@ export const Comique = () => {
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const pageId = 7;
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -31,7 +32,10 @@ export const Comique = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -67,6 +71,7 @@ export const Comique = () => {
           onKeyDown={handleKeyDown}
           src="src/assets/images/comique2.jpg"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>

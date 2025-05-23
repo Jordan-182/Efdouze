@@ -14,6 +14,7 @@ export const Title = () => {
   const { count, setCount } = useCount();
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -32,7 +33,10 @@ export const Title = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -88,6 +92,7 @@ export const Title = () => {
           slideAnimation={slideAnimation}
           Disable={false}
           maxLength={0}
+          isError={isError}
         />
       </div>
     </>
