@@ -6,56 +6,38 @@ import { useCount } from "../context/CountContext";
 import styles from "../styles/Homepage.module.css";
 
 export const Title = () => {
-    const pageId = 14
-    const h2Ref = useRef<HTMLHeadingElement>(null);
-    const [inputValue, setInputValue] = useState("");
-    const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
-    const navigate = useNavigate();
-    const { count, setCount } = useCount();
+  const pageId = 14
+  const h2Ref = useRef<HTMLHeadingElement>(null);
+  const [inputValue, setInputValue] = useState("");
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
+  const navigate = useNavigate();
+  const { count, setCount } = useCount();
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [showModal, setShowModal] = useState(false);
-    
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setInputValue(value);
-    };
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        const valeur = h2Ref.current ? h2Ref.current.textContent : "";
-        if (event.key === "Enter") {
-            if (valeur === "TonyHawk") {
-                const completed = JSON.parse(
-                    localStorage.getItem("completedPages") || "[]"
-                );
-                if (!completed.includes(pageId)) {
-                    setSlideAnimation(false);
-                    setIsPasswordCorrect(true);
-                } else {
-                  setShowModal(true);
-                }
-            } else {
-                alert("Incorrect password");
-            }
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setInputValue(value);
+  };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const valeur = h2Ref.current ? h2Ref.current.textContent : "";
+    if (event.key === "Enter") {
+      if (valeur === "TonyHawk") {
+        const completed = JSON.parse(
+          localStorage.getItem("completedPages") || "[]"
+        );
+        if (!completed.includes(pageId)) {
+          setSlideAnimation(false);
+          setIsPasswordCorrect(true);
+        } else {
+          setShowModal(true);
         }
-      };
-    
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const valeur = h2Ref.current ? h2Ref.current.textContent : "";
-            if (valeur === "TonyHawk") {
-                const completed = JSON.parse(
-                    localStorage.getItem("completedPages") || "[]"
-                );
-                if (!completed.includes(pageId)) {
-                    setSlideAnimation(false);
-                    setIsPasswordCorrect(true);
-                } else {
-                  setShowModal(true);
-                }
-            }
-        }, 1000);
-        return () => clearInterval(interval);
-    }, []);
-  
+      } else {
+        alert("Incorrect password");
+      }
+    }
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       const valeur = h2Ref.current ? h2Ref.current.textContent : "";
@@ -67,7 +49,7 @@ export const Title = () => {
           setSlideAnimation(false);
           setIsPasswordCorrect(true);
         } else {
-          alert("Mot de passe déjà trouvé pour cette page!");
+          setShowModal(true);
         }
       }
     }, 1000);
