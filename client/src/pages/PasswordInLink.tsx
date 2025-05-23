@@ -14,6 +14,9 @@ export const PasswordInLink = () => {
   const { count, setCount } = useCount();
   const pageId = 3;
   const [isError, setIsError] = useState(false);
+  const [isTrue, setIsTrue] = useState(false);
+
+
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -31,7 +34,14 @@ export const PasswordInLink = () => {
         } else {
           setShowModal(true);
         }
-      } else {
+      } else if(!isTrue){
+        window.open('https://i.imgflip.com/9uxy2p.jpg')
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
+        setIsTrue(true)
+      }else {
         setIsError(true);
         setTimeout(() => {
           setIsError(false);
