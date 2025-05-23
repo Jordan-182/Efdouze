@@ -105,6 +105,7 @@ export const Over = () => {
           height="315"
           preload="auto"
           style={{ display: showVideo ? "block" : "none" }}
+          onEnded={() => setShowVideo(false)}
         />
       </div>
       <div

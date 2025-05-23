@@ -53,7 +53,7 @@ export const LastChapter = () => {
       }
       setTimeout(() => {
         setSlideAnimation(true);
-        navigate("/");
+        navigate("/Final");
       }, 400);
     }
   }, [isPasswordCorrect]);
@@ -68,7 +68,7 @@ export const LastChapter = () => {
   return (
     <>
       <div className={styles.container}>
-        <Modal isOpen={showModal} link="/" />
+        <Modal isOpen={showModal} link="/Final" />
         <Password
           value={inputValue}
           onChange={handleInputChange}
