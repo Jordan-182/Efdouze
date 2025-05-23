@@ -16,12 +16,12 @@ export const Navigation = () => {
   const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value.toLowerCase();
     setInputValue(value);
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "Haddock") {
+      if (inputValue === "haddock") {
         const completed = JSON.parse(
           localStorage.getItem("completedPages") || "[]"
         );

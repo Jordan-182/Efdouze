@@ -16,11 +16,11 @@ export const Musique = () => {
   const pageId = 13;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value.toLowerCase();
     setInputValue(value);
   };
 
-  const hiddenPassword = atob("T3pvbmU=");
+  const hiddenPassword = atob("b3pvbmU=");
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {

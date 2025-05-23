@@ -16,7 +16,7 @@ export const KeyboardIsBroken = () => {
   const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value.toLowerCase();
     setInputValue(value);
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {

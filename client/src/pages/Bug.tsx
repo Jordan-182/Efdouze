@@ -16,12 +16,12 @@ export const Bug = () => {
   const pageId = 11;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value.toLowerCase();
     setInputValue(value);
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "LAVACHICKEN") {
+      if (inputValue === "lavachicken") {
         const completed = JSON.parse(
           localStorage.getItem("completedPages") || "[]"
         );

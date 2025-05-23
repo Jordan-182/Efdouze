@@ -17,13 +17,13 @@ export const Title = () => {
   const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value.toLowerCase();
     setInputValue(value);
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const valeur = h2Ref.current ? h2Ref.current.textContent : "";
     if (event.key === "Enter") {
-      if (valeur === "TonyHawk") {
+      if (valeur === "tonyhawk") {
         const completed = JSON.parse(
           localStorage.getItem("completedPages") || "[]"
         );

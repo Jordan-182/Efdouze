@@ -17,12 +17,12 @@ export const Batman = () => {
   const [isTrue, setIsTrue] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value.toLowerCase();
     setInputValue(value);
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "Batman") {
+      if (inputValue === "batman") {
         const completed = JSON.parse(
           localStorage.getItem("completedPages") || "[]"
         );
@@ -32,13 +32,13 @@ export const Batman = () => {
         } else {
           setShowModal(true);
         }
-      } else if(!isTrue){
-        window.open('https://i.imgflip.com/9uxt7i.jpg')
+      } else if (!isTrue) {
+        window.open("https://i.imgflip.com/9uxt7i.jpg");
         setIsError(true);
         setTimeout(() => {
           setIsError(false);
         }, 1000);
-        setIsTrue(true)
+        setIsTrue(true);
       } else {
         setIsError(true);
         setTimeout(() => {

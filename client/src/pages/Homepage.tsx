@@ -16,7 +16,7 @@ export const Homepage = () => {
   const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value.toLowerCase();
     setInputValue(value);
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -32,9 +32,9 @@ export const Homepage = () => {
         } else {
           setShowModal(true);
         }
-      } else if (inputValue === 'assword' || inputValue === 'assword*') {
-        window.open('/assworld.png')
-       }else{
+      } else if (inputValue === "assword" || inputValue === "assword*") {
+        window.open("/assworld.png");
+      } else {
         setIsError(true);
         setTimeout(() => {
           setIsError(false);

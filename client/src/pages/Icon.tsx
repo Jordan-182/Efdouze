@@ -20,12 +20,12 @@ export const Icon = () => {
   const [hasPlayedVideo, setHasPlayedVideo] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value.toLowerCase();
     setInputValue(value);
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "Samus") {
+      if (inputValue === "samus") {
         const completed = JSON.parse(
           localStorage.getItem("completedPages") || "[]"
         );

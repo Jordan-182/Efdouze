@@ -16,15 +16,13 @@ export const PasswordInLink = () => {
   const [isError, setIsError] = useState(false);
   const [isTrue, setIsTrue] = useState(false);
 
-
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value.toLowerCase();
     setInputValue(value);
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "RickRoll") {
+      if (inputValue === "rickroll") {
         const completed = JSON.parse(
           localStorage.getItem("completedPages") || "[]"
         );
@@ -34,14 +32,14 @@ export const PasswordInLink = () => {
         } else {
           setShowModal(true);
         }
-      } else if(!isTrue){
-        window.open('https://i.imgflip.com/9uxy2p.jpg')
+      } else if (!isTrue) {
+        window.open("https://i.imgflip.com/9uxy2p.jpg");
         setIsError(true);
         setTimeout(() => {
           setIsError(false);
         }, 1000);
-        setIsTrue(true)
-      }else {
+        setIsTrue(true);
+      } else {
         setIsError(true);
         setTimeout(() => {
           setIsError(false);

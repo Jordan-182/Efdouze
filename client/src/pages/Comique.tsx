@@ -17,7 +17,7 @@ export const Comique = () => {
   const [isTrue, setIsTrue] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const value = event.target.value.toLowerCase();
     setInputValue(value);
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -32,14 +32,14 @@ export const Comique = () => {
         } else {
           setShowModal(true);
         }
-      } else if(!isTrue){
-        window.open('https://i.imgflip.com/9uxts8.jpg')
+      } else if (!isTrue) {
+        window.open("https://i.imgflip.com/9uxts8.jpg");
         setIsError(true);
         setTimeout(() => {
           setIsError(false);
         }, 1000);
-        setIsTrue(true)
-      }else {
+        setIsTrue(true);
+      } else {
         setIsError(true);
         setTimeout(() => {
           setIsError(false);
