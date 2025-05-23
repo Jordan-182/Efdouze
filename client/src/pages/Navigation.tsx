@@ -32,14 +32,10 @@ export const Navigation = () => {
           setShowModal(true);
         }
       } else {
-<<<<<<< HEAD
         setIsError(true);
         setTimeout(() => {
           setIsError(false);
         }, 1000);
-=======
-        alert("Incorrect password");
->>>>>>> cdaf9048d3d35f6f88878694026356ca81b23277
       }
     }
   };
