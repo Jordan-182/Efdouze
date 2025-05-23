@@ -15,6 +15,7 @@ export const Leon = () => {
   const [showModal, setShowModal] = useState(false);
   const { count, setCount } = useCount();
   const pageId = 4;
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -39,7 +40,10 @@ export const Leon = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -72,6 +76,7 @@ export const Leon = () => {
           onKeyDown={handleKeyDown}
           src="src/assets/images/Leon.jpg"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
       <div className={styles.Leon}>{password}</div>

@@ -13,6 +13,7 @@ export const Icon = () => {
   const [showModal, setShowModal] = useState(false);
   const { count, setCount } = useCount();
   const pageId = 9;
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -31,7 +32,10 @@ export const Icon = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -64,6 +68,7 @@ export const Icon = () => {
           onKeyDown={handleKeyDown}
           src="/onglet.png"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>

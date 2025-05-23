@@ -13,6 +13,7 @@ export const Navigation = () => {
   const [showModal, setShowModal] = useState(false);
   const { count, setCount } = useCount();
   const pageId = 5;
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -31,7 +32,14 @@ export const Navigation = () => {
           setShowModal(true);
         }
       } else {
-        setShowModal(true);
+<<<<<<< HEAD
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
+=======
+        alert("Incorrect password");
+>>>>>>> cdaf9048d3d35f6f88878694026356ca81b23277
       }
     }
   };
@@ -64,6 +72,7 @@ export const Navigation = () => {
           onKeyDown={handleKeyDown}
           src="src/assets/images/navigation.jpg"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>

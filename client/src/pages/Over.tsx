@@ -18,6 +18,7 @@ export const Over = () => {
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const pageId = 2;
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -47,7 +48,10 @@ export const Over = () => {
           videoRef.current?.play();
         }, 0);
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -83,6 +87,7 @@ export const Over = () => {
           onKeyDown={handleKeyDown}
           src="src/assets/images/hover.jpg"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
       <div

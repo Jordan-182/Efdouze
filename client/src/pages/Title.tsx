@@ -6,7 +6,7 @@ import { useCount } from "../context/CountContext";
 import styles from "../styles/Homepage.module.css";
 
 export const Title = () => {
-  const pageId = 14
+  const pageId = 14;
   const h2Ref = useRef<HTMLHeadingElement>(null);
   const [inputValue, setInputValue] = useState("");
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
@@ -14,6 +14,7 @@ export const Title = () => {
   const { count, setCount } = useCount();
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -33,10 +34,31 @@ export const Title = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const valeur = h2Ref.current ? h2Ref.current.textContent : "";
+      if (valeur === "TonyHawk") {
+        const completed = JSON.parse(
+          localStorage.getItem("completedPages") || "[]"
+        );
+        if (!completed.includes(pageId)) {
+          setSlideAnimation(false);
+          setIsPasswordCorrect(true);
+        } else {
+          setShowModal(true);
+        }
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -89,6 +111,7 @@ export const Title = () => {
           slideAnimation={slideAnimation}
           Disable={false}
           maxLength={0}
+          isError={isError}
         />
       </div>
     </>

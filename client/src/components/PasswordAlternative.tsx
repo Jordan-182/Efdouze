@@ -8,6 +8,7 @@ type PasswordProps = {
   slideAnimation: boolean;
   Disable?: boolean;
   maxLength: number;
+  isError?: boolean;
 };
 
 function passwordAlternative({
@@ -18,6 +19,7 @@ function passwordAlternative({
   slideAnimation,
   Disable,
   maxLength,
+  isError,
 }: PasswordProps) {
   return (
     <>
@@ -29,7 +31,7 @@ function passwordAlternative({
             disabled={Disable}
             type="password"
             placeholder="Enter password"
-            className={styles.password}
+            className={`${styles.password} ${isError ? styles.error : ""}`}
             maxLength={maxLength}
             value={value}
             onChange={onChange}

@@ -13,6 +13,7 @@ export const Console = () => {
   const [showModal, setShowModal] = useState(false);
   const { count, setCount } = useCount();
   const pageId = 6;
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -39,7 +40,10 @@ export const Console = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -72,6 +76,7 @@ export const Console = () => {
           onKeyDown={handleKeyDown}
           src="src/assets/images/consoles.jpg"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>
