@@ -34,8 +34,7 @@ export const Homepage = () => {
         }
       } else if (inputValue === 'assword' || inputValue === 'assword*') {
         window.open('/assworld.png')
-       }
-      else {
+       }else{
         setIsError(true);
         setTimeout(() => {
           setIsError(false);

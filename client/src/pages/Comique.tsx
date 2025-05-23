@@ -14,6 +14,7 @@ export const Comique = () => {
   const [showModal, setShowModal] = useState(false);
   const pageId = 7;
   const [isError, setIsError] = useState(false);
+  const [isTrue, setIsTrue] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -31,8 +32,14 @@ export const Comique = () => {
         } else {
           setShowModal(true);
         }
-      } else {
+      } else if(!isTrue){
         window.open('https://i.imgflip.com/9uxts8.jpg')
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
+        setIsTrue(true)
+      }else {
         setIsError(true);
         setTimeout(() => {
           setIsError(false);
