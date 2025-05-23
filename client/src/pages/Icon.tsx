@@ -20,7 +20,7 @@ export const Icon = () => {
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "password") {
+      if (inputValue === "Samus") {
         const completed = JSON.parse(
           localStorage.getItem("completedPages") || "[]"
         );

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Modal from "../components/Modal";
 import Password from "../components/Password";
 import { useCount } from "../context/CountContext";
 import styles from "../styles/Homepage.module.css";
@@ -13,6 +14,7 @@ export const StockageInterne = () => {
   const [slideAnimation, setSlideAnimation] = useState(true);
   const pageId = 17;
   const [password, setPassword] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     setIsPasswordCorrect(false);
@@ -35,7 +37,7 @@ export const StockageInterne = () => {
           setSlideAnimation(false);
           setIsPasswordCorrect(true);
         } else {
-          alert("Mot de passe déjà trouvé pour cette page!");
+          setShowModal(true);
         }
       } else {
         alert("Incorrect password");
@@ -64,6 +66,7 @@ export const StockageInterne = () => {
   return (
     <>
       <div className={styles.container}>
+        <Modal isOpen={showModal} link="/SomethingMustBeAddedHere" />
         <Password
           value={inputValue}
           onChange={handleInputChange}

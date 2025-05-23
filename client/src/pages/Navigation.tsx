@@ -28,7 +28,7 @@ export const Navigation = () => {
           setSlideAnimation(false);
           setIsPasswordCorrect(true);
         } else {
-          alert("Mot de passe déjà trouvé pour cette page!");
+          setShowModal(true);
         }
       } else {
         setShowModal(true);
