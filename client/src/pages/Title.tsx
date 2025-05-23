@@ -61,24 +61,6 @@ export const Title = () => {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const valeur = h2Ref.current ? h2Ref.current.textContent : "";
-      if (valeur === "TonyHawk") {
-        const completed = JSON.parse(
-          localStorage.getItem("completedPages") || "[]"
-        );
-        if (!completed.includes(pageId)) {
-          setSlideAnimation(false);
-          setIsPasswordCorrect(true);
-        } else {
-          setShowModal(true);
-        }
-      }
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     if (isPasswordCorrect) {
       const completed = JSON.parse(
         localStorage.getItem("completedPages") || "[]"

@@ -102,7 +102,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/26.357896+127.783809",
-        element: <Batman/>
+        element: <Batman />,
       },
     ],
   },
