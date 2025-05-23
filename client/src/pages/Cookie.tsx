@@ -25,7 +25,7 @@ export const Cookie = () => {
     };
 
     useEffect(() => {
-        document.cookie = "password=GoodJob; path=/";
+        document.cookie = "password=GoodJob";
         if (isPasswordCorrect) {
             setTimeout(() => {
                 setSlideAnimation(true)

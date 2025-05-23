@@ -39,7 +39,7 @@ export const Title = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             const valeur = h2Ref.current ? h2Ref.current.textContent : "";
-            if (valeur === "AntoineFaucon") {
+            if (valeur === "TonyHawk") {
                 const completed = JSON.parse(
                     localStorage.getItem("completedPages") || "[]"
                 );

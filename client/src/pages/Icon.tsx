@@ -15,7 +15,7 @@ export const Icon = () => {
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      if (inputValue === "samus") {
+      if (inputValue === "Samus") {
         setSlideAnimation(false);
         setIsPasswordCorrect(true);
       } else {
