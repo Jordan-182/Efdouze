@@ -14,7 +14,7 @@ export const CSS = () => {
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const { setCount } = useCount();
-
+  const [isError, setIsError] = useState(false);
   const pageId = 10;
 
   useEffect(() => {
@@ -40,7 +40,10 @@ export const CSS = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -65,6 +68,7 @@ export const CSS = () => {
           onKeyDown={handleKeyDown}
           src="src/assets/images/key.png"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
       <div className={styles.hidden}>{password}</div>

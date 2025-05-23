@@ -6,6 +6,7 @@ type PasswordProps = {
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   src: string;
   slideAnimation: boolean;
+  isError?: boolean;
 };
 
 function password({
@@ -14,6 +15,7 @@ function password({
   onKeyDown,
   src,
   slideAnimation,
+  isError,
 }: PasswordProps) {
   return (
     <>
@@ -24,7 +26,7 @@ function password({
           <input
             type="password"
             placeholder="Enter password"
-            className={styles.password}
+            className={`${styles.password} ${isError ? styles.error : ""}`}
             maxLength={14}
             value={value}
             onChange={onChange}

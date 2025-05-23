@@ -12,7 +12,7 @@ export const Bug = () => {
   const { count, setCount } = useCount();
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [showModal, setShowModal] = useState(false);
-
+  const [isError, setIsError] = useState(false);
   const pageId = 11;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,10 @@ export const Bug = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -65,6 +68,7 @@ export const Bug = () => {
           onKeyDown={handleKeyDown}
           src="/motdepase.png"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>

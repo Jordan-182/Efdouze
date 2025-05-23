@@ -13,6 +13,7 @@ export const LastChapter = () => {
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const pageId = 18;
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -31,7 +32,10 @@ export const LastChapter = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -71,6 +75,7 @@ export const LastChapter = () => {
           onKeyDown={handleKeyDown}
           src="src/assets/images/urlquery.png"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>

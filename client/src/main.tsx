@@ -104,10 +104,13 @@ const router = createBrowserRouter([
       {
         path: "/26.357896+127.783809",
         element: <Batman />,
+<<<<<<< HEAD
+=======
       },
       {
         path: "/final",
         element: <Final />,
+>>>>>>> 83f59a45bd2ad32ff241ebe7cd5edc95aec9212e
       },
     ],
   },

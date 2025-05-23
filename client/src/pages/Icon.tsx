@@ -3,7 +3,8 @@ import { useNavigate } from "react-router";
 import Modal from "../components/Modal";
 import Password from "../components/Password";
 import { useCount } from "../context/CountContext";
-import styles from "../styles/Homepage.module.css";
+import styles from "../styles/Icon.module.css";
+import { useRef as useReactRef } from "react";
 
 export const Icon = () => {
   const [inputValue, setInputValue] = useState("");
@@ -13,6 +14,10 @@ export const Icon = () => {
   const [showModal, setShowModal] = useState(false);
   const { count, setCount } = useCount();
   const pageId = 9;
+  const [isError, setIsError] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const videoRef = useReactRef<HTMLVideoElement>(null);
+  const [hasPlayedVideo, setHasPlayedVideo] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -31,7 +36,17 @@ export const Icon = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
+        if (!hasPlayedVideo) {
+          setShowVideo(true);
+          setHasPlayedVideo(true);
+          setTimeout(() => {
+            videoRef.current?.play();
+          }, 0);
+        }
       }
     }
   };
@@ -56,6 +71,17 @@ export const Icon = () => {
 
   return (
     <>
+      <div className={styles.video}>
+        <video
+          ref={videoRef}
+          src="src/assets/video/WRONG.mp4"
+          width="560"
+          height="315"
+          preload="auto"
+          style={{ display: showVideo ? "block" : "none" }}
+          onEnded={() => setShowVideo(false)}
+        />
+      </div>
       <div className={styles.container}>
         <Modal isOpen={showModal} link="/Musique" />
         <Password
@@ -64,8 +90,12 @@ export const Icon = () => {
           onKeyDown={handleKeyDown}
           src="/onglet.png"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>
   );
 };
+function useRef<T>(arg0: null) {
+  throw new Error("Function not implemented.");
+}

@@ -12,7 +12,7 @@ export const Musique = () => {
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const { count, setCount } = useCount();
-
+  const [isError, setIsError] = useState(false);
   const pageId = 13;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +35,10 @@ export const Musique = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -74,6 +77,7 @@ export const Musique = () => {
           onKeyDown={handleKeyDown}
           src="src/assets/images/controls.png"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>

@@ -13,6 +13,7 @@ export const Cookie = () => {
   const [showModal, setShowModal] = useState(false);
   const { count, setCount } = useCount();
   const pageId = 8;
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -31,7 +32,10 @@ export const Cookie = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -74,6 +78,7 @@ export const Cookie = () => {
           onKeyDown={handleKeyDown}
           src="https://m.media-amazon.com/images/I/61PjDmmrnrL._AC_UF894,1000_QL80_.jpg"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>

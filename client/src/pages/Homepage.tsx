@@ -13,6 +13,7 @@ export const Homepage = () => {
   const [slideAnimation, setSlideAnimation] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const pageId = 1;
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -27,11 +28,18 @@ export const Homepage = () => {
         if (!completed.includes(pageId)) {
           setSlideAnimation(false);
           setIsPasswordCorrect(true);
+          setIsError(false);
         } else {
           setShowModal(true);
         }
-      } else {
-        alert("Incorrect password");
+      } else if (inputValue === 'assword' || inputValue === 'assword*') {
+        window.open('/assworld.png')
+       }
+      else {
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -64,6 +72,7 @@ export const Homepage = () => {
           onKeyDown={handleKeyDown}
           src="src/assets/images/password.png"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>

@@ -12,6 +12,7 @@ export const Batman = () => {
   const navigate = useNavigate();
   const { count, setCount } = useCount();
   const [slideAnimation, setSlideAnimation] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +32,11 @@ export const Batman = () => {
           setShowModal(true);
         }
       } else {
-        alert("Incorrect password");
+        window.open('https://i.imgflip.com/9uxt7i.jpg', '_blank')
+        setIsError(true);
+        setTimeout(() => {
+          setIsError(false);
+        }, 1000);
       }
     }
   };
@@ -65,6 +70,7 @@ export const Batman = () => {
           onKeyDown={handleKeyDown}
           src="https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/full_width/public/thumbnails/image/NASA_Earth.jpg"
           slideAnimation={slideAnimation}
+          isError={isError}
         />
       </div>
     </>
